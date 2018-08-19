@@ -20,31 +20,31 @@
 
 ## List contacts ( Default view )
 
-![list_contact](https://raw.githubusercontent.com/hoduc/contact-demo/master/demo/list.gif)
+![list](https://raw.githubusercontent.com/hoduc/contact-book/master/demo/list.gif)
 
 ## Add a contact
 
-![add_contact](https://raw.githubusercontent.com/hoduc/contact-demo/master/demo/add.gif)
+![add](https://raw.githubusercontent.com/hoduc/contact-book/master/demo/add.gif)
 
 ## Edit a contact
 
-![list_contact](https://raw.githubusercontent.com/hoduc/contact-demo/master/demo/edit.gif)
+![edit](https://raw.githubusercontent.com/hoduc/contact-book/master/demo/edit.gif)
 
 ## Delete a contact
 
-![list_contact](https://raw.githubusercontent.com/hoduc/contact-demo/master/demo/delete.gif)
+![delete](https://raw.githubusercontent.com/hoduc/contact-book/master/demo/delete.gif)
 
 ## Inactivate a contact
 
-![list_contact](https://raw.githubusercontent.com/hoduc/contact-demo/master/demo/inactivate.gif)
+![toggle](https://raw.githubusercontent.com/hoduc/contact-book/master/demo/toggle.gif)
 
 ## Validation
 
-![list_contact](https://raw.githubusercontent.com/hoduc/contact-demo/master/demo/validation.gif)
+![validation](https://raw.githubusercontent.com/hoduc/contact-book/master/demo/validation.gif)
 
 ## Design paper (pen and sketch)
 
-![list_contact](https://raw.githubusercontent.com/hoduc/contact-demo/master/demo/design.gif)
+![list_contact](https://raw.githubusercontent.com/hoduc/contact-book/master/demo/design.jpg)
 
 
 # Folder structure
@@ -98,5 +98,7 @@ README.md
 **- Mobile gesture** : 3D touch ? Force touch.
 
 **- Animation/Transition/Themes** : between views.
+
+**- More descriptive validation message**
 
 **- TBD, ... **
