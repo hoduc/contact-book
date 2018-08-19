@@ -151,6 +151,10 @@ router.get('/contacts/search/:query', (req,res) => {
            })
 })
 
+app.use(express.static(__dirname + '/Client/build'));
+router.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname+'/Client/build/index.html'));
+  });
 app.use('/api', router);
 var server = app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
 

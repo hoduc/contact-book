@@ -241,10 +241,10 @@ class App extends Component {
             cancelSubmitContact={this.onCancelSubmitContact}
             changeProfileUrl={this.onChangeProfileUrl}
           />}
-          <button onClick={() => {this.onNewContactProp();}} className="btn btn-primary">
+          {!this.state.hideList && <button onClick={() => {this.onNewContactProp();}} className="btn btn-primary">
             <span className="glyphicon glyphicon-plus">
             </span>
-          </button>
+          </button>}
         </div>
         <div>
           {/* error: {this.state.error && <p>{this.state.error}</p>} */}
