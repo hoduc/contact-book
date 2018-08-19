@@ -4,7 +4,7 @@
 
 > To run on local:
 
-> git clone
+> git clone git@github.com:hoduc/contact-book.git
 
 > cd contact-book
 
