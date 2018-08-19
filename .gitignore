@@ -1,21 +1,34 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
+# OS X
+.DS_Store*
+Icon?
+._*
 
-# dependencies
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+*~
+
+
+# npm
 /node_modules
+package-lock.json
+*.log
+*.gz
 
-# testing
-/coverage
 
-# production
-/build
+# Coveralls
+coverage
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Benchmarking
+benchmarks/graphs
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

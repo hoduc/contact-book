@@ -1,5 +1,5 @@
 {
-  "name": "contact-book",
+  "name": "contact-book-server",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -7,30 +7,17 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "body-parser": "^1.18.3",
-    "bootstrap": "3",
-    "concurrently": "^3.6.1",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "mongodb": "^3.1.3",
-    "mongodb-memory-server": "^2.0.0",
     "mongoose": "^5.2.8",
     "mongoose-unique-validator": "^2.0.1",
     "morgan": "^1.9.0",
-    "nodemon": "^1.18.3",
-    "react": "^16.4.2",
-    "react-bootstrap": "^0.32.1",
-    "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4",
-    "supertest": "^3.1.0"
+    "nodemon": "^1.18.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start:server": "cd Server && set DBURI='test' && nodemon Server.js --exec babel-node --presets es2015,stage-0",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "unittest": "mocha --compilers js:babel-register --timeout 120000 **/*.spec.js",
-    "unittest2":"jest Server/Server.spec.js",
-    "eject": "react-scripts eject"
+    "start": "nodemon Server.js --exec babel-node --presets es2015,stage-0",
+    "heroku-postbuild": "cd Client && yarn && yarn run build"
   },
   "proxy": "http://localhost:3001",
   "devDependencies": {

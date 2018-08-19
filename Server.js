@@ -7,13 +7,13 @@ import Contact from './Contact';
 
 const app = express();
 const router = express.Router();
-const result = dotenv.config({ path: __dirname + '/../dev.env'});
+const result = dotenv.config({ path: __dirname + '/dev.env'});
 if (result.error) {
     throw result.error;
 }
 var dbUri = process.env.DB_PROTOCOL + '://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@' + process.env.DB_HOST + ':' + process.env.DB_PORT + '/' + process.env.DB;
 console.log('dbUri:', dbUri);
-const API_PORT = process.env.API_PORT || 3001;
+const API_PORT = process.env.API_PORT || 3000;
 mongoose.connect(dbUri);
 mongoose.connection.on('error', console.error.bind(console, 'There was an error connecting to MongoDB'));
 app.use(bodyParser.urlencoded({ extended: false }));
