@@ -14,7 +14,7 @@
 
 > cd Client && yarn && yarn start
 
-> When both terminal finished, go to localhost:5000/
+> When both terminal finished, go to localhost:3000/
 
 # Minimum Viable Product ( MVP ). With pictures
 
@@ -91,14 +91,15 @@ README.md
 
 # Future improvement ( provided times)
 
-**- Text search** : Add a searchable by all indexable fields with weight so that user could quickly look up a certain contact. MongoDB natively supports full text search I belive. Was not able to make it work.
 
-**- Sort list and pagination** : Add the ability to sort the list by certain criteria( predefined +/- custom ). How would one deal with millions data( background polling ? only pull viewable area data )
+- [x] [Partial] **- Text search** : Add a searchable by all indexable fields with weight so that user could quickly look up a certain contact. MongoDB natively supports full text search I belive. Was not able to make it work.
 
-**- Mobile gesture** : 3D touch ? Force touch.
+- [ ] **- Sort list and pagination** : Add the ability to sort the list by certain criteria( predefined +/- custom ). How would one deal with millions data( background polling ? only pull viewable area data )
 
-**- Animation/Transition/Themes** : between views.
+- [ ] **- Mobile gesture** : 3D touch ? Force touch.
 
-**- More descriptive validation message**
+- [ ] **- Animation/Transition/Themes** : between views.
+
+- [ ] **- More descriptive validation message**
 
 **- TBD, ... **

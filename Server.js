@@ -14,7 +14,7 @@ if (result.error) {
 var dbUri = process.env.DB_PROTOCOL + '://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@' + process.env.DB_HOST + ':' + process.env.DB_PORT + '/' + process.env.DB;
 console.log('dbUri:', dbUri);
 const API_PORT = process.env.PORT || 5000;
-mongoose.connect(dbUri);
+mongoose.connect(dbUri, {useNewUrlParser: true});
 mongoose.connection.on('error', console.error.bind(console, 'There was an error connecting to MongoDB'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -137,13 +137,13 @@ router.delete('/contacts/:contactId', (req,res) => {
 
 /** EXPERIMENTAL FULL TEXT SEARCH. NOT WORK YET */
 router.get('/contacts/search/:query', (req,res) => {
-    var query = req.params;
+    const query = req.params['query']; // to remove auto single/double quotes added
     if (!query) {
         return res.json({ success: false, error: 'No query given!!!' });
     }
     Contact.find(
-           { $text: { $search: "a" }},
-           { score: { $meta: "textScore" }},
+           { $text: { $search: query } },
+           { score: { $meta: "textScore" } },
            )
            .exec((error, contacts) => {
                 if (error) return res.json({ success: false, error });
