@@ -92,7 +92,7 @@ README.md
 # Future improvement ( provided times)
 
 
-- [x] [Partial] **- Text search** : Add a searchable by all indexable fields with weight so that user could quickly look up a certain contact. MongoDB natively supports full text search I belive. Was not able to make it work.
+- [x] **- Text search** : Add a searchable by all indexable fields with weight so that user could quickly look up a certain contact. MongoDB natively supports full text search I belive. Was not able to make it work.
 
 - [ ] **- Sort list and pagination** : Add the ability to sort the list by certain criteria( predefined +/- custom ). How would one deal with millions data( background polling ? only pull viewable area data )
 
@@ -101,5 +101,7 @@ README.md
 - [ ] **- Animation/Transition/Themes** : between views.
 
 - [ ] **- More descriptive validation message**
+
+- [ ] **- Revamp UI**
 
 **- TBD, ... **

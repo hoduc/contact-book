@@ -35,7 +35,6 @@ const ContactSchema = new Schema({
     }
 }, { timestamps: true });
 
-ContactSchema.index({firstName: 'text', lastName: 'text', email: 'text', phoneNumber: 'text', status: 'text'});
 ContactSchema.plugin(uniqueValidator);
 
 

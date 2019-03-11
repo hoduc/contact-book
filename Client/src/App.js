@@ -210,6 +210,29 @@ class App extends Component {
     })
   }
 
+  // TO DO: Filter as user type ... 
+  onSubmitSearch = () => {
+    if (this.refs.search !== null) {
+      const keyword = this.refs.search.value;
+      fetch(`api/contacts/search/${keyword}`)
+      .then(data => data.json())
+      .then((res) => {
+        if (!res.success) this.setState({ error: res.error });
+        else {
+          if (res.data.length > 0) {
+            this.setState({ data: res.data });
+          } else {
+            console.log("No data. Keep last!!!");
+          }
+        }
+      });
+    }
+  }
+
+  onEnterKeyDown = () => {
+    this.onSubmitSearch();
+  }
+
   render() {
     return (
       <div className="App">
@@ -220,6 +243,15 @@ class App extends Component {
               Contact Book
             </h1>
           </div> 
+          <br />
+          {!this.state.hideList && <div>
+            <input ref="search" type="text" className="list-group list-group-item" placeholder="Search" aria-label="Search" onKeyDown={() => {this.onEnterKeyDown();}} />
+            <span>
+              <a className="btn btn-outline-primary" onClick={() => {this.onSubmitSearch();}}>
+                <span className="glyphicon glyphicon-search"></span>
+              </a>
+            </span>
+          </div>}
           <br />
           {!this.state.hideList && <ContactList
             data={this.state.data}
