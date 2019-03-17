@@ -19,12 +19,12 @@ const ContactForm = (props) => {
             </div>
             <div className={`form-group ${props.emailError ? 'has-error' : ''}`}>
                 <label htmlFor="email">Email</label>
-                <input type="email" name="email" className="form-control" placeholder="Your email: a@example.com" value={props.email || ''} onChange={props.handleChangeText} required/>
+                <input type="email" name="email" className="form-control" placeholder="Your email: a@example.com" value={props.email || ''} onChange={props.handleChangeText} onBlur={props.validateEmail} required/>
                 {props.emailError && <span>{props.emailError}</span>}
             </div>
             <div className={`form-group ${props.phoneError ? 'has-error' : ''}`}>
                 <label htmlFor="phoneNumber">Phone#</label>
-                <input type="tel" name="phoneNumber" className="form-control" maxLength="12" placeholder="Your phone number: xxx-xxx-xxxx" value={props.phoneNumber || ''} onChange={props.handleChangeText} required/>
+                <input type="tel" name="phoneNumber" className="form-control" maxLength="12" placeholder="Your phone number: xxx-xxx-xxxx" value={props.phoneNumber || ''} onChange={props.handleChangeText} onBlur={props.validatePhoneNumber} required/>
                 {props.phoneError && <span>{props.phoneError}</span>}
             </div>
             <div className="form-group">
@@ -48,6 +48,8 @@ ContactForm.propTypes = {
     emailError: PropTypes.string,
     submitContact: PropTypes.func.isRequired,
     handleChangeText: PropTypes.func.isRequired,
+    validatePhoneNumber: PropTypes.func.isRequired,
+    validateEmail: PropTypes.func.isRequired,
     cancelSubmitContact: PropTypes.func.isRequired,
     changeProfileUrl: PropTypes.func.isRequired
 }

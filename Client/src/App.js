@@ -81,43 +81,41 @@ class App extends Component {
     });
   }
 
-  onEditContact = (contactElement) => {
-    // console.log('on Edit Contact:', contactElement);
+  onEditContact = (contactElement) => {    
     this.setState({ contact: contactElement, edit: true, hideList: true});
   }
 
+  onValidate = (field, fieldValue, validateFn, serverValidateUrl) => {
+    if (validateFn(fieldValue)) {
+      fetch(`${serverValidateUrl}/${fieldValue}`)
+      .then(data => data.json())
+      .then((res) => {        
+        if (res.success) this.setState({ [`${field}Error`] : `${field} is taken!!!. Sorry bud!`});
+        else {
+          this.setState({[`${field}Error`]: null});
+        }
+      });
+    } else {
+      this.setState({ [`${field}Error`] : `${field}'s format is not erright`});
+    }
+  }
+
+  onValidateEmail = (e) => {
+    const newContact = Object.assign({}, this.state.contact);
+    this.onValidate('email', newContact['email'] || '', validator.isEmail, 'api/contacts/emailCheck')
+  }
+
+  onValidatePhoneNumber = (e) => {
+    const newContact = Object.assign({}, this.state.contact);
+    this.onValidate('email', newContact['phoneNumber'] || '', validator.isMobilePhone, 'api/contacts/phoneCheck')
+  }
+
+  
+
   onChangeContactProp = (e) => {
     const newContact = Object.assign({}, this.state.contact);
-    const email = newContact['email'];
-    const phoneNumber = newContact['phoneNumber'];
-    console.log('email:', email);
-    //validate
-    // if (e.target.name === 'phoneNumber') {
-    //   if (!validator.isMobilePhone(e.target.value)) {
-    //     return;
-    //   } else {
-    //     fetch(`api/contacts/phoneCheck/${e.target.value}`)
-    //     .then(data => data.json())
-    //     .then((res) => {
-    //       if (!res.success) this.setState({ phoneError: 'phone is taken!!!. Sorry bud!'});
-    //       this.setState({contact : newContact});
-    //     });
-    //   }
-    // }
 
-    if (e.target.name === 'email') {      
-      if (email && !validator.isEmail(email)) {
-        return;
-      } else {
-        console.log("validatation round 1 passed!!!");
-        fetch(`api/contacts/emailCheck/${email}`)
-        .then(data => data.json())
-        .then((res) => {
-          if (!res.success) this.setState({ emailError: 'email is taken!!!. Sorry bud!'});          
-        });
-      }
-    }
-
+    // TODO : RECONCILIATE this boolean madness
     if (e.target.name === 'status') {
       newContact[e.target.name] = e.target.checked;
     } else newContact[e.target.name] = e.target.value;
@@ -300,6 +298,8 @@ class App extends Component {
             phoneError={this.state.phoneError}
             emailError={this.state.emailError}
             handleChangeText={this.onChangeContactProp}
+            validatePhoneNumber={this.onValidateEmail}
+            validateEmail={this.onValidateEmail}
             submitContact={this.onSubmitContact}
             cancelSubmitContact={this.onCancelSubmitContact}
             changeProfileUrl={this.onChangeProfileUrl}

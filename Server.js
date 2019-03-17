@@ -31,16 +31,7 @@ router.get('/contacts', (req, res) => {
     });
 });
 
-var findByNameParam = (req, res, key) => {
-    const namedParam= req.params[key];
-    if (!namedParam) {
-        return res.json({ success: false, error: 'no param given!!!' });
-    }
-    Contact.findOne({ [key] : namedParam}, (error, response) => { // [key] : ES6 computed property names
-        if (error) return res.json({ success: false, error: error });
-        return res.json({ success: true, data: response });
-    });
-}
+
 
 router.get('/contacts/:contactId', (req,res) => {
     const { contactId } = req.params;
@@ -54,6 +45,16 @@ router.get('/contacts/:contactId', (req,res) => {
 });
 
 
+var findByNameParam = (req, res, key) => {
+    const namedParam= req.params[key];
+    if (!namedParam) {
+        return res.json({ success: false, error: 'no param given!!!' });
+    }
+    Contact.findOne({ [key] : namedParam}, (error, response) => { // [key] : ES6 computed property names
+        if (error || !response) return res.json({ success: false, error: error });
+        return res.json({ success: true, data: response });
+    });
+}
 
 router.get('/contacts/phoneCheck/:phoneNumber', (req, res) => findByNameParam(req, res, 'phoneNumber'));
 router.get('/contacts/emailCheck/:email', (req, res) => findByNameParam(req, res, 'email'));
