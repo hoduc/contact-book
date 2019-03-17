@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import ContactList from './ContactList';
 import ContactForm from './ContactForm';
+import validator from 'validator';
 
 class App extends Component {
   constructor() {
@@ -87,6 +88,36 @@ class App extends Component {
 
   onChangeContactProp = (e) => {
     const newContact = Object.assign({}, this.state.contact);
+    const email = newContact['email'];
+    const phoneNumber = newContact['phoneNumber'];
+    console.log('email:', email);
+    //validate
+    // if (e.target.name === 'phoneNumber') {
+    //   if (!validator.isMobilePhone(e.target.value)) {
+    //     return;
+    //   } else {
+    //     fetch(`api/contacts/phoneCheck/${e.target.value}`)
+    //     .then(data => data.json())
+    //     .then((res) => {
+    //       if (!res.success) this.setState({ phoneError: 'phone is taken!!!. Sorry bud!'});
+    //       this.setState({contact : newContact});
+    //     });
+    //   }
+    // }
+
+    if (e.target.name === 'email') {      
+      if (email && !validator.isEmail(email)) {
+        return;
+      } else {
+        console.log("validatation round 1 passed!!!");
+        fetch(`api/contacts/emailCheck/${email}`)
+        .then(data => data.json())
+        .then((res) => {
+          if (!res.success) this.setState({ emailError: 'email is taken!!!. Sorry bud!'});          
+        });
+      }
+    }
+
     if (e.target.name === 'status') {
       newContact[e.target.name] = e.target.checked;
     } else newContact[e.target.name] = e.target.value;

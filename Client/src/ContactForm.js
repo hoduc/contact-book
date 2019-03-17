@@ -34,6 +34,7 @@ const ContactForm = (props) => {
             <button onClick={() => { props.cancelSubmitContact(); }} className="btn btn-danger">Cancel</button>
             <button type="submit" className="btn btn-primary">Submit</button>
         </form>
+        
     );
 }
 

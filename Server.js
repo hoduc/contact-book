@@ -14,7 +14,7 @@ if (result.error) {
 var dbUri = process.env.DB_PROTOCOL + '://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@' + process.env.DB_HOST + ':' + process.env.DB_PORT + '/' + process.env.DB;
 console.log('dbUri:', dbUri);
 const API_PORT = process.env.PORT || 5000;
-mongoose.connect(dbUri, {useNewUrlParser: true});
+mongoose.connect(dbUri, {useCreateIndex: true,  useNewUrlParser: true});
 mongoose.connection.on('error', console.error.bind(console, 'There was an error connecting to MongoDB'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -31,6 +31,17 @@ router.get('/contacts', (req, res) => {
     });
 });
 
+var findByNameParam = (req, res, key) => {
+    const namedParam= req.params[key];
+    if (!namedParam) {
+        return res.json({ success: false, error: 'no param given!!!' });
+    }
+    Contact.findOne({ [key] : namedParam}, (error, response) => { // [key] : ES6 computed property names
+        if (error) return res.json({ success: false, error: error });
+        return res.json({ success: true, data: response });
+    });
+}
+
 router.get('/contacts/:contactId', (req,res) => {
     const { contactId } = req.params;
     if (!contactId) {
@@ -41,6 +52,12 @@ router.get('/contacts/:contactId', (req,res) => {
         return res.json({ success: true, data: contact });
     });
 });
+
+
+
+router.get('/contacts/phoneCheck/:phoneNumber', (req, res) => findByNameParam(req, res, 'phoneNumber'));
+router.get('/contacts/emailCheck/:email', (req, res) => findByNameParam(req, res, 'email'));
+
 
 router.put('/contacts/:contactId', (req,res) => {
     const { contactId } = req.params;
