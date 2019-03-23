@@ -96,11 +96,15 @@ README.md
 
 - [ ] **- Sort list and pagination** : Add the ability to sort the list by certain criteria( predefined +/- custom ). How would one deal with millions data( background polling ? only pull viewable area data )
 
+- [] **- Import/Export to vcards** : To easily import/export data to multiple platforms. 
+
 - [ ] **- Mobile gesture** : 3D touch ? Force touch.
 
 - [ ] **- Animation/Transition/Themes** : between views.
 
 - [ ] **- More descriptive validation message**
+
+- [ ] **- Customizable theme options**
 
 - [ ] **- Revamp UI**
 
