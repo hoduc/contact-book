@@ -25,7 +25,7 @@ router.get('/hello', (req,res) => {
 });
 
 router.get('/contacts', (req, res) => {
-    Contact.find((err, contacts) => {
+    Contact.find().collation({ locale: "en" }).sort('firstName').exec((err, contacts) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true, data: contacts });
     });
